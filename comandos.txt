@@ -1,0 +1,36 @@
+Asi podemos crear una nueva base de datos en mongobd 
+
+use crud;
+
+y le agregamos una coleccion 
+
+db.personas.insertOne({
+    "nombre" : "Rodrigo",
+    "paterno" : "Sandoval",
+    "materno" : "Flores",
+    "fecha_nacimiento" : "2000-04-05"  
+})
+
+Asi podemos crear un usuario en mongobd con los permisos que necesitamos
+db.createUser(
+  {
+    user: "escritor",
+    pwd: "123456",
+    roles: [
+       { role: "readWrite", db: "crudmongo" }
+    ]
+  }
+)
+
+//probar el usuario que acabamos de crear 
+
+mongo -u escritor -p 123456 --authenticationDatabase crudmongo
+
+-- link para poder configurar mongo en linux ubuntu 
+https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04-es
+
+-- agregar la dependencia en php para utilizar mongo 
+composer require mongodb/mongodb
+
+-- revisar la libreria de php mongodb 
+https://docs.mongodb.com/php-library/v1.3/reference/method/MongoDBCollection-updateOne/index.html
